@@ -1,30 +1,31 @@
 <template>
-  <v-container class="pa-8" fluid>
-<div>
-  <div id="cabecalho">
+  
+  <v-container class="pa-8" fluid id="pagina">
+  <div>
+  <div id="titulo">
   FastRPG
   </div>
   <div>
     <section>
-      <div id="Fastrpg">
-        O que é o RPG e como o FastRPG é útil?
+      <div id="o_que_e_rpg">
+        O que é o RPG?
       </div>
-      <v-img src="../assets/images/art-rpg.jpg"></v-img>
+      <!-- <v-img src="../assets/images/art-rpg.jpg"></v-img>  -->
       <br>
-      <div id="RPG">
+      <!-- <div id="RPG">
         RPG
-      </div>
-      <div id="texto_int">
+      </div> -->
+      <!-- <div id="texto_int">
 RPG é a sigla em inglês para role-playing game, um gênero de jogo onde os jogadores assumem o papel de personagens imaginários, em um mundo fictício.
 Onde você pode ser oque quiser como um elfo, anão, mago, guerreiro. Claro existem algumas regras dentro de cada sistema afinal não é no início de jogo que simplesmente você pode sair voando, atirando raio “laser” pelos olhos, etc.
 O sistema é onde se diz as regras e onde se acham os livros, o mais jogado mundialmente é o D&D (Dungeons and Dragons) uma simulação de mundo medieval de fantasia, com dragões monstros tudo que você possa imaginar.
-      </div> <br>
+      </div> <br> -->
       <div id="texto_rpg">
 O RPG é um jogo de mesa bem estruturado e cooperativo (normalmente não há vencedores), em que, cada jogador controla, tipicamente, um único personagem. Durante o curso do jogo, cada jogador dirige as ações de seu personagem e suas interações com outros personagens. Uma partida geralmente dura varias sessões, chamadas de aventuras. Um conjunto de aventuras relacionadas entre si, é chamada campanha.
 
 Os resultados das escolhas do grupo e a história básica do jogo é determinada pelo lider, também chamado mestre do jogo, ou ainda como narrador, conforme as regras e com a interpretação do lider sobre essas regras. O lider escolhe e descreve os vários Personagens não jogadores (NPCs), que os personagens encontram, o cenário em que essas relações ocorrem, e os resultados desses encontros baseados nas escolhas e ações dos jogadores. As extensas regras do jogo, que cobrem áreas diversas como interações sociais, uso de magia, combate e o efeito do ambiente nos personagens, ajudam o mestre em suas decisões.
 </div> <br>
-      <div id="fast-title">
+      <!-- <div id="fast-title">
         FastRPG
       </div>
       <div id="text-fast">
@@ -40,10 +41,10 @@ Nosso site busca trazer maior facilidade para construção de personagem e auxí
 <br>
 - Gerador Simplificado de personagem( <v-icon>mdi-dice-d20</v-icon> ): Podendo excolher sua Raça, Classe, Niível, e Nome (Podendo tambem o aleatorizar), e apos a criação, sua ficha estará disponivel no Arquivo de Fichas ( <v-icon>mdi-bookshelf</v-icon> )
 <br>
-</div>
+</div> -->
     </section>
     <br>
-    <div id="breve">
+    <!-- <div id="breve">
       Em Breve:
     </div>
     <div>
@@ -56,7 +57,7 @@ Nosso site busca trazer maior facilidade para construção de personagem e auxí
       - Delete e Curtir de Forma Funcional
       <br>
       - E Muito Mais!
-    </div>
+    </div> -->
   </div>
 </div>
   </v-container>
@@ -100,14 +101,20 @@ export default {
 </script>
 
 <style scoped>
- #cabecalho{
-   margin: 0 auto;
+  #pagina{
+    background-color: rgb(224, 200, 149);
+
+  }
+
+  #titulo{
+    text-align: center;
+    margin: 0 auto;
    font-weight: bold;
    font-size: 50px;
-   color:#222;
+   color: #8F1B1B;
    padding: 5px 10px;
-   border-left: 4px solid #8b0292;
-}
+  }
+
  #Fastrpg {
   max-width: 400px;
   margin-left: auto;
@@ -116,8 +123,43 @@ export default {
  }
  #RPG,#fast-title,#breve{
     max-width: 400px;
-    border-left: 4px solid #8b0292;
+    border-left: 4px solid #821b88;
     font-weight: bold;
+ }
+ 
+ #o_que_e_rpg{
+position: absolute;
+height: 28px;
+left: 210px;
+top: 265px;
+
+font-family: 'Karla';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 28px;
+
+text-decoration-line: underline;
+text-transform: uppercase;
+
+color: #8F1B1B;
+ }
+ 
+ #texto_rpg{
+  position: absolute;
+width: 763px;
+height: 364px;
+left: 210px;
+top: 340px;
+
+font-family: 'Karla';
+font-style: normal;
+font-weight: 400;
+font-size: 24px;
+line-height: 28px;
+text-align: justify;
+
+color: #1b0505;
  }
 
 </style>
