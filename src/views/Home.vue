@@ -1,31 +1,48 @@
 <template>
-  
-  <v-container class="pa-8" fluid id="pagina">
-  <div>
-  <div id="titulo">
-  FastRPG
-  </div>
-  <div>
-    <section>
-      <div id="o_que_e_rpg">
-        O que é o RPG?
+  <v-container class="pa-8" fluid id="page">
+    <div>
+      <div id="title">
+        FastRPG
       </div>
-      <!-- <v-img src="../assets/images/art-rpg.jpg"></v-img>  -->
-      <br>
-      <!-- <div id="RPG">
-        RPG
-      </div> -->
-      <!-- <div id="texto_int">
-RPG é a sigla em inglês para role-playing game, um gênero de jogo onde os jogadores assumem o papel de personagens imaginários, em um mundo fictício.
-Onde você pode ser oque quiser como um elfo, anão, mago, guerreiro. Claro existem algumas regras dentro de cada sistema afinal não é no início de jogo que simplesmente você pode sair voando, atirando raio “laser” pelos olhos, etc.
-O sistema é onde se diz as regras e onde se acham os livros, o mais jogado mundialmente é o D&D (Dungeons and Dragons) uma simulação de mundo medieval de fantasia, com dragões monstros tudo que você possa imaginar.
-      </div> <br> -->
-      <div id="texto_rpg">
-O RPG é um jogo de mesa bem estruturado e cooperativo (normalmente não há vencedores), em que, cada jogador controla, tipicamente, um único personagem. Durante o curso do jogo, cada jogador dirige as ações de seu personagem e suas interações com outros personagens. Uma partida geralmente dura varias sessões, chamadas de aventuras. Um conjunto de aventuras relacionadas entre si, é chamada campanha.
+      <div>
+        <section>
+          <div id="rpg_title">
+            O que é o RPG?
+          </div>
+          <v-img id="dragon_image" src="../assets/images/art-rpg.jpg"></v-img>
+          <br />
 
-Os resultados das escolhas do grupo e a história básica do jogo é determinada pelo lider, também chamado mestre do jogo, ou ainda como narrador, conforme as regras e com a interpretação do lider sobre essas regras. O lider escolhe e descreve os vários Personagens não jogadores (NPCs), que os personagens encontram, o cenário em que essas relações ocorrem, e os resultados desses encontros baseados nas escolhas e ações dos jogadores. As extensas regras do jogo, que cobrem áreas diversas como interações sociais, uso de magia, combate e o efeito do ambiente nos personagens, ajudam o mestre em suas decisões.
-</div> <br>
-      <!-- <div id="fast-title">
+          <div id="text_rpg">
+            RPG é a sigla em inglês para role-playing game, um gênero de jogo
+            onde os jogadores assumem o papel de personagens imaginários, em um
+            mundo fictício onde você pode ser oque quiser! O RPG é um jogo de
+            mesa bem estruturado e cooperativo (normalmente não há vencedores),
+            em que, cada jogador controla, tipicamente, um único personagem.
+            Durante o curso do jogo, cada jogador dirige as ações de seu
+            personagem e suas interações com outros personagens. Uma partida
+            geralmente dura varias sessões, chamadas de aventuras. Um conjunto
+            de aventuras relacionadas entre si, é chamada campanha. Os
+            resultados das escolhas do grupo e a história básica do jogo é
+            determinada pelo líder, também chamado de mestre do jogo, conforme
+            as regras e com a interpretação do líder sobre essas regras. O líder
+            escolhe e descreve os vários Personagens não jogadores (NPCs) que os
+            personagens encontram, o cenário em que essas relações ocorrem e os
+            resultados desses encontros baseados nas escolhas e ações dos
+            jogadores. As extensas regras do jogo, que cobrem áreas diversas
+            como interações sociais, uso de magia, combate e o efeito do
+            ambiente nos personagens, ajudam o mestre em suas decisões. O
+            sistema é onde estão as regras do jogo, tendo várias variações. O
+            sistema mais jogado mundialmente é o Dungeons&Dragons (D&D) uma
+            simulação de mundo medieval fantasioso com dragões, monstros e tudo
+            que você possa imaginar.
+          </div>
+          <br />
+
+          <div id="title_fastrpg">
+            O que é o fastRPG?
+          </div>
+          <br />
+          <!-- <div id="fast-title">
         FastRPG
       </div>
       <div id="text-fast">
@@ -42,9 +59,9 @@ Nosso site busca trazer maior facilidade para construção de personagem e auxí
 - Gerador Simplificado de personagem( <v-icon>mdi-dice-d20</v-icon> ): Podendo excolher sua Raça, Classe, Niível, e Nome (Podendo tambem o aleatorizar), e apos a criação, sua ficha estará disponivel no Arquivo de Fichas ( <v-icon>mdi-bookshelf</v-icon> )
 <br>
 </div> -->
-    </section>
-    <br>
-    <!-- <div id="breve">
+        </section>
+        <br />
+        <!-- <div id="breve">
       Em Breve:
     </div>
     <div>
@@ -58,18 +75,18 @@ Nosso site busca trazer maior facilidade para construção de personagem e auxí
       <br>
       - E Muito Mais!
     </div> -->
-  </div>
-</div>
+      </div>
+    </div>
   </v-container>
 </template>
 
 <script>
-import * as fb from "@/plugins/firebase"
+import * as fb from "@/plugins/firebase";
 export default {
-  data(){
+  data() {
     return {
-      uid: '',
-      novaTarefa: '',
+      uid: "",
+      novaTarefa: "",
       tarefas: [],
     };
   },
@@ -79,11 +96,13 @@ export default {
   methods: {
     async buscarTarefasDoServidor() {
       this.tarefas = [];
-      const logTasks = await fb.taskCollection.where("owner", "==", this.uid).get();
-      for (const doc of logTasks.docs){
+      const logTasks = await fb.taskCollection
+        .where("owner", "==", this.uid)
+        .get();
+      for (const doc of logTasks.docs) {
         this.tarefas.push({
           id: doc.id,
-          titulo: doc.data().titulo
+          titulo: doc.data().titulo,
         });
       }
     },
@@ -97,69 +116,89 @@ export default {
       this.buscarTarefasDoServidor();
     },
   },
-}
+};
 </script>
 
 <style scoped>
-  #pagina{
-    background-color: rgb(224, 200, 149);
+#page {
+  background-color: rgb(233, 212, 166);
+  height: 5000px;
+}
 
-  }
+#title {
+  text-align: center;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 50px;
+  color: #8f1b1b;
+  padding: 5px 10px;
+}
 
-  #titulo{
-    text-align: center;
-    margin: 0 auto;
-   font-weight: bold;
-   font-size: 50px;
-   color: #8F1B1B;
-   padding: 5px 10px;
-  }
+#rpg_title {
+  position: absolute;
+  height: 28px;
+  left: 210px;
+  top: 265px;
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  text-decoration-line: underline;
+  text-transform: uppercase;
 
- #Fastrpg {
+  color: #8f1b1b;
+}
+
+#text_rpg {
+  position: absolute;
+  width: 763px;
+  left: 210px;
+  top: 340px;
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+  text-align: justify;
+  color: #1b0505;
+  background-color: #c7b7a0;
+}
+
+#dragon_image {
+  position: absolute;
+  width: 1350px;
+  height: 1000px;
+  left: 566px;
+  top: 200px;
+  background: #647561;
+}
+
+#title_fastrpg {
+  position: absolute;
+  left: 1073px;
+  top: 1396px;
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 37px;
+  text-decoration-line: underline;
+  color: #8f1b1b;
+}
+
+#Fastrpg {
   max-width: 400px;
   margin-left: auto;
-  margin-right: auto; 
+  margin-right: auto;
   font-style: italic;
- }
- #RPG,#fast-title,#breve{
-    max-width: 400px;
-    border-left: 4px solid #821b88;
-    font-weight: bold;
- }
- 
- #o_que_e_rpg{
-position: absolute;
-height: 28px;
-left: 210px;
-top: 265px;
+}
 
-font-family: 'Karla';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-line-height: 28px;
-
-text-decoration-line: underline;
-text-transform: uppercase;
-
-color: #8F1B1B;
- }
- 
- #texto_rpg{
-  position: absolute;
-width: 763px;
-height: 364px;
-left: 210px;
-top: 340px;
-
-font-family: 'Karla';
-font-style: normal;
-font-weight: 400;
-font-size: 24px;
-line-height: 28px;
-text-align: justify;
-
-color: #1b0505;
- }
-
+#RPG,
+#fast-title,
+#breve {
+  max-width: 400px;
+  border-left: 4px solid #b60303;
+  font-weight: bold;
+}
 </style>
