@@ -1,21 +1,24 @@
 <template>
   <v-app>
-    <v-app-bar app color="#8b0292" dark elevation="1">
-      <v-app-bar-nav-icon @click.stop="sidebar = !sidebar"></v-app-bar-nav-icon>
+
+    <!-- header -->
+    <v-app-bar app color="#B73F3F" dark elevation="1">
+
+      <v-app-bar-nav-icon color="#CAA154" @click.stop="sidebar = !sidebar"></v-app-bar-nav-icon>
       <v-img
         max-height="120"
         max-width="120"
         src="../assets/images/logo-rpg.png"
       ></v-img>
       <v-spacer></v-spacer>
-          <v-icon @click="logadoOuNao">mdi-account</v-icon>
+          <v-icon color="#CAA154" @click="logadoOuNao">mdi-account</v-icon>
          
     </v-app-bar>
     <v-navigation-drawer app v-model="sidebar" :mini-variant.sync="mini">
-      <v-list dense color="#8b0292" dark>
+      <v-list dense color="#b73f3f" dark>
         <v-list-item>
           <v-list-item-action>
-            <v-icon class="px=2" @click.stop="sidebar = !sidebar"
+            <v-icon color="#CAA154" class="px=2" @click.stop="sidebar = !sidebar"
               >mdi-chevron-left</v-icon
             >
           </v-list-item-action>
@@ -48,13 +51,13 @@
       </v-list>
     </v-navigation-drawer>
     <v-main><router-view> </router-view></v-main>
-    <v-footer app class="py-3">
+    <v-footer app class="py-3" color="#b73f3f">
       <span class="caption"
         >FastRPG &copy;2022 <br />
-        Equipe : Gabriel da Maia Leandro, Beatriz
-        Cristina de Arruda, Guinnever Correa.</span
-      ></v-footer
-    >
+        Equipe : Lizie Maia, Beatriz
+        Cristina de Arruda, Guinnever Corrêa.</span>
+      </v-footer>
+
   </v-app>
 </template>
 
@@ -117,4 +120,5 @@ export default {
 </script>
 
 <style>
+
 </style>

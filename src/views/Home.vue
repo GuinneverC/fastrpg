@@ -1,23 +1,19 @@
 <template>
   <v-container class="pa-8" fluid id="page">
-
     <div>
-
       <div id="title">
         FastRPG
       </div>
 
       <div>
         <section>
-
           <div id="rpg_text_background"></div>
 
           <div id="rpg_title">
             O que é o RPG?
           </div>
 
-          <v-img id="dragon_image" src="../assets/images/art-rpg.jpg"></v-img>
-          
+          <v-img id="dragon_image"></v-img>
           <br />
 
           <div id="text_rpg">
@@ -44,8 +40,9 @@
             simulação de mundo medieval fantasioso com dragões, monstros e tudo
             que você possa imaginar.
           </div>
-
           <br />
+
+          <div id="warrior_image"></div>
 
           <div id="fast_description_background"></div>
 
@@ -55,37 +52,34 @@
 
           <br />
 
-        <div id="fastrpg_description">
-          Nosso site busca trazer maior facilidade para construção de personagem e auxílio em outras funções, como rolagem de dados e conversores de moedas
-          <br>
-                  Dentre nossas funções estão:
-          <br>
-          - Duas listas, contendo todas as Raças ( <v-icon>mdi-gnome</v-icon> ) e Classes ( <v-icon>mdi-anvil</v-icon>) que o livro oficial de Dungeons and Dragons tem disponivel.
-          <br>
-          - Rolador de Dados (<v-icon>mdi-dice-multiple</v-icon>): Existem uma variedade imensa de dados, temos os principais e mais importantes, sendo eles de 4,6,8,10,12 e 20 lados. Podendo ser rodados ao clicar no botão "Rolar"
-          <br>
-          - Conversor de Moedas ( <v-icon>mdi-bitcoin</v-icon> ): Colocando o valor em peças de ouro podendo converter para Prata, Cobre e Platina
-          <br>
-          - Gerador Simplificado de personagem( <v-icon>mdi-dice-d20</v-icon> ): Podendo excolher sua Raça, Classe, Niível, e Nome (Podendo tambem o aleatorizar), e apos a criação, sua ficha estará disponivel no Arquivo de Fichas ( <v-icon>mdi-bookshelf</v-icon> )
-          <br>
-        </div>
-
+          <div id="fastrpg_description">
+            Nosso site busca trazer maior facilidade para construção de
+            personagem e auxílio em outras funções, como rolagem de dados e
+            conversores de moedas
+            <br />
+            Dentre nossas funções estão:
+            <br />
+            - Duas listas, contendo todas as Raças (
+            <v-icon>mdi-gnome</v-icon> ) e Classes ( <v-icon>mdi-anvil</v-icon>)
+            que o livro oficial de Dungeons and Dragons tem disponivel.
+            <br />
+            - Rolador de Dados (<v-icon>mdi-dice-multiple</v-icon>): Existem uma
+            variedade imensa de dados, temos os principais e mais importantes,
+            sendo eles de 4,6,8,10,12 e 20 lados. Podendo ser rodados ao clicar
+            no botão "Rolar"
+            <br />
+            - Conversor de Moedas ( <v-icon>mdi-bitcoin</v-icon> ): Colocando o
+            valor em peças de ouro podendo converter para Prata, Cobre e Platina
+            <br />
+            - Gerador Simplificado de personagem(
+            <v-icon>mdi-dice-d20</v-icon> ): Podendo excolher sua Raça, Classe,
+            Niível, e Nome (Podendo tambem o aleatorizar), e apos a criação, sua
+            ficha estará disponivel no Arquivo de Fichas (
+            <v-icon>mdi-bookshelf</v-icon> )
+            <br />
+          </div>
         </section>
         <br />
-        <!-- <div id="breve">
-      Em Breve:
-    </div>
-    <div>
-      - Visualização de Ficha (Durante a Criação)
-      <br>
-      - Gerador de Nomes Individual
-      <br>
-      - Ficha Mais Completa
-      <br>
-      - Delete e Curtir de Forma Funcional
-      <br>
-      - E Muito Mais!
-    </div> -->
       </div>
     </div>
   </v-container>
@@ -133,7 +127,7 @@ export default {
 <style scoped>
 #page {
   background-color: rgb(233, 212, 166);
-  height: 5000px;
+  height: 2000px;
 }
 
 #title {
@@ -145,19 +139,31 @@ export default {
   padding: 5px 10px;
 }
 
-#rpg_text_background {
+#dragon_image {
   position: absolute;
-  width: 1257.31px;
-  height: 504.56px;
-  left: 128.28px;
-  top: 173.62px;
+  width: 1350px;
+  height: 1000px;
+  left: 566px;
+  top: 200px;
+  background: #647561;
+  z-index: 1;
+}
+
+#rpg_text_background {
+  background-color: #c7b7a0;
+  position: absolute;
+  width: 933.72px;
+  height: 780px;
+  left: 124.28px;
+  top: 250px;
+  z-index: 2;
 }
 
 #rpg_title {
   position: absolute;
   height: 28px;
   left: 210px;
-  top: 265px;
+  top: 300px;
   font-family: "Karla";
   font-style: normal;
   font-weight: 400;
@@ -165,7 +171,7 @@ export default {
   line-height: 28px;
   text-decoration-line: underline;
   text-transform: uppercase;
-
+  z-index: 3;
   color: #8f1b1b;
 }
 
@@ -173,7 +179,7 @@ export default {
   position: absolute;
   width: 763px;
   left: 210px;
-  top: 340px;
+  top: 400px;
   font-family: "Karla";
   font-style: normal;
   font-weight: 400;
@@ -182,21 +188,31 @@ export default {
   text-align: justify;
   color: #1b0505;
   background-color: #c7b7a0;
+  z-index: 3;
 }
 
-#dragon_image {
+#warrior_image {
   position: absolute;
   width: 1350px;
   height: 1000px;
-  left: 566px;
-  top: 200px;
-  background: #647561;
+  left: 0px;
+  top: 948px;
+  background: #d1b37a;
+}
+
+#fast_description_background {
+  position: absolute;
+  width: 889px;
+  height: 633.23px;
+  left: 963px;
+  top: 1250px;
+  background-color: #c7b7a0;
 }
 
 #title_fastrpg {
   position: absolute;
   left: 1073px;
-  top: 1396px;
+  top: 1350px;
   font-family: "Karla";
   font-style: normal;
   font-weight: 400;
@@ -208,34 +224,18 @@ export default {
 
 #fastrpg_description {
   position: absolute;
-width: 669px;
-height: 327px;
-left: 1073px;
-top: 1470px;
+  width: 669px;
+  height: 327px;
+  left: 1073px;
+  top: 1430px;
 
-font-family: 'Karla';
-font-style: normal;
-font-weight: 400;
-font-size: 20px;
-line-height: 23px;
+  font-family: "Karla";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 23px;
 
-color: #000000;
+  color: #000000;
 }
 
-#fast_description_background{
-  position: absolute;
-width: 1257.31px;
-height: 633px;
-left: 960px;
-top: 1286px;
-background-color: #c7b7a0;
-}
-
-#RPG,
-#fast-title,
-#breve {
-  max-width: 400px;
-  border-left: 4px solid #b60303;
-  font-weight: bold;
-}
 </style>
