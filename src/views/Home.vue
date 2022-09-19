@@ -126,7 +126,7 @@ export default {
 
 <style scoped>
 #page {
-  background-color: rgb(233, 212, 166);
+  background-color: #EEE9D9;
   height: 2000px;
 }
 
@@ -237,5 +237,4 @@ export default {
 
   color: #000000;
 }
-
 </style>
