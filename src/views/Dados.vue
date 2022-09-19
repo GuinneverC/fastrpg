@@ -2,14 +2,16 @@
 
   <div class="container">
     
-    <h2 id="titulo">{{titulo}}</h2>
+    <h2 id="dices_title">Dados</h2>
     <br>
+
+    <div id="dices_background"></div>
+
     <div class="grid-container">
 
     <div class="grid-child">
-      
       <span class="input-group-btn">
-      <v-btn color=#8b0292 @keyup.enter="D4" @click="D4" id="dado" class="white--text">Rolar D4</v-btn>
+      <v-btn @keyup.enter="D4" @click="D4" id="d4_text" class="white--text">Rolar D4</v-btn>
       <br> <br>
       <v-img src="../assets/dices/d4-icon.png" width="100"
       style="cursor: pointer;" data-type="20"
@@ -18,10 +20,12 @@
       <p style="font-size: 18px; font-style: italic;">Resultado: {{ quatro }}</p> 
       </span>
   </div>
+
+
   <div class="grid-child">
        
       <span class="input-group-btn">
-      <v-btn color=#8b0292 @keyup.enter="D6" @click="D6" id="dado" class="white--text">Rolar D6</v-btn>
+      <v-btn @keyup.enter="D6" @click="D6" id="d6_text" class="white--text">Rolar D6</v-btn>
       <br> <br>
       <v-img src="../assets/dices/d6-icon.png" width="100"
       style="cursor: pointer;" data-type="20"
@@ -32,7 +36,7 @@
   </div>
   <div class="grid-child">
       <span class="input-group-btn">
-      <v-btn color=#8b0292 @keyup.enter="D8" @click="D8" id="dado" class="white--text">Rolar D8</v-btn>
+      <v-btn @keyup.enter="D8" @click="D8" id="d8_text" class="white--text">Rolar D8</v-btn>
       <br> <br>
       <v-img src="../assets/dices/d8-icon.png" width="100"
       style="cursor: pointer;" data-type="20"
@@ -43,7 +47,7 @@
   </div>
   <div class="grid-child">
       <span class="input-group-btn">
-      <v-btn color=#8b0292 @keyup.enter="D10" @click="D10" id="dado" class="white--text">Rolar D10</v-btn>
+      <v-btn @keyup.enter="D10" @click="D10" id="d10_text" class="white--text">Rolar D10</v-btn>
       <br><br>
       <v-img src="../assets/dices/d10-icon.png" width="100"
       style="cursor: pointer;" data-type="10"
@@ -54,7 +58,7 @@
   </div>
   <div class="grid-child">
       <span class="input-group-btn">
-      <v-btn color=#8b0292 @keyup.enter="D12" @click="D12" id="dado" class="white--text">Rolar D12</v-btn>
+      <v-btn @keyup.enter="D12" @click="D12" id="d12_text" class="white--text">Rolar D12</v-btn>
       <br> <br>
       <v-img src="../assets/dices/d12-icon.png" width="100"
       style="cursor: pointer;" data-type="12"
@@ -65,9 +69,9 @@
   </div>
   <div class="grid-child" >
       <span class="input-group-btn">
-      <v-btn color=#8b0292 @keyup.enter="D20" @click="D20" id="dado" class="white--text">Rolar D20</v-btn>
+      <v-btn @keyup.enter="D20" @click="D20" id="d20_text" class="white--text">Rolar D20</v-btn>
       <br><br>
-      <v-img id="d20" src="../assets/dices/d20-icon.png" 
+      <v-img id="d20_img" src="../assets/dices/d20-icon.png" 
       width="100"
       style="cursor: pointer;" data-type="20"
       @click="D20"></v-img>
@@ -84,7 +88,6 @@ export default {
   name: 'dados',
   data() {
     return {
-      titulo: "Rolar de Dados Online",
       quatro: '',
       seis: '',
       oito:'',
@@ -118,18 +121,114 @@ export default {
 </script>
 
 <style>
-  .grid-container {
+#dices_title{
+  position: absolute;
+    width: 302px;
+    height: 46px;
+    left: 812px;
+    top: 180px;
+    font-family: 'Goblin One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 45px;
+    text-align: center;  
+    color: #6C5D3F;
+    z-index: 1;
+}
+
+#dices_background{
+  position: absolute;
+  width: 1181px;
+  height: 810px;
+  left: 370px;
+  top: 146px;
+  background: linear-gradient(180deg, #DCD6C2 0%, #C4B999 100%);
+  border-radius: 40px;
+}
+
+
+.grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns:1fr 1fr 1fr;
+    grid-template-rows: 1;
     grid-gap: 20px;
 }
-#dado{
-    margin: 0 auto;
+#d4_text{
+    position: absolute;
+      width: 128px;
+      height: 29px;
+      left: 316px;
+      top: 250px;
+    
+      background: #CEAA67;
+      border: 1px dashed #000000;
+      border-radius: 5px;
 }
+
+#d6_text {
+  position: absolute;
+    width: 128px;
+    height: 29px;
+    left: 526px;
+    top: 248px;
+  
+    background: #CEAA67;
+    border: 1px dashed #000000;
+    border-radius: 5px;
+}
+
+#d8_text {
+  position: absolute;
+    width: 128px;
+    height: 29px;
+    left: 738px;
+    top: 249px;
+  
+    background: #CEAA67;
+    border: 1px dashed #000000;
+    border-radius: 5px;
+}
+
+#d10_text {
+  position: absolute;
+    width: 128px;
+    height: 29px;
+    left: 316px;
+    top: 600px;
+  
+    background: #CEAA67;
+    border: 1px dashed #000000;
+    border-radius: 5px;
+}
+
+#d12_text {
+  position: absolute;
+    width: 128px;
+    height: 29px;
+    left: 526px;
+    top: 601px;
+  
+    background: #CEAA67;
+    border: 1px dashed #000000;
+    border-radius: 5px;
+}
+
+#d20_text {
+  position: absolute;
+    width: 128px;
+    height: 29px;
+    left: 738px;
+    top: 602px;
+  
+    background: #CEAA67;
+    border: 1px dashed #000000;
+    border-radius: 5px;
+}
+
  #titulo {
    color:#222;
    padding: 5px 10px;
    border-left: 4px solid #8b0292;
  }
-
 </style>
