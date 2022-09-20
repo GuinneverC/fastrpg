@@ -1,14 +1,19 @@
 <template>
+
   <v-container class="pa-8" fluid>
-    <h1 class="h1">Classes</h1>
+
+    <h1 id="class_title">Classes</h1>
+
     <v-list>
       <v-list-item v-for="classe of classes" v-bind:key="classe.id">
-        <v-list-item-content
-          ><h3 id="classe-title">{{ classe.title }}</h3>
-          Força: {{ classe.Força }}, Destreza: {{ classe.Destreza }},
-          Constituição: {{ classe.Constituição }}, Inteligencia;
-          {{ classe.Inteligencia }}, Sabedoria: {{ classe.Sabedoria }}, Carisma:
-          {{ classe.Carisma }} <br />
+        <v-list-item-content><h3 id="classe-title">
+          {{ classe.title }}</h3>
+          Força: {{ classe.Força }}, <br>
+          Destreza: {{ classe.Destreza }},<br>
+          Constituição: {{ classe.Constituição }}, <br>
+          Inteligencia;{{ classe.Inteligencia }},<br> 
+          Sabedoria: {{ classe.Sabedoria }}, <br>
+          Carisma:{{ classe.Carisma }} <br />
           Vida por Nível: {{ classe.vida }}, <br />
           Habilidade Principal: {{ classe.habilidade }} <br />
           Descrição: {{ classe.descricao }} <br />
@@ -39,6 +44,11 @@ export default {
 </script>
 
 <style scoped>
+
+#class_title{
+  
+}
+
 #classe-title {
   font-weight: bold;
   color: #222;
