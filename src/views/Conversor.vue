@@ -10,7 +10,10 @@
       <v-img id="coins_icon_2" src="../assets/images/coins-icon.png"></v-img>
 
       <div id="coin_selector_1"></div>
+      <h1 id="coin_selector_text_1">Selecione a moeda</h1>
       <div id="coin_selector_2"></div>
+      <h1 id="coin_selector_text_2">Selecione a moeda</h1>
+
 
       <v-img id="down_arrow_1" src="../assets/images/down-arrow.png"></v-img>
       <v-img id="down_arrow_2" src="../assets/images/down-arrow.png"></v-img>
@@ -125,6 +128,33 @@ export default {
   background: #647561;
   border-radius: 10px;
 }
+
+#coin_selector_text_1{
+  position: absolute;
+  left: 525px;
+  top: 574px;
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 37px;
+  text-align: center;
+  color: #EEE9D9;
+}
+
+#coin_selector_text_2{
+  position: absolute;
+  left: 1135px;
+  top: 574px;
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 37px;
+  text-align: center;
+  color: #EEE9D9;
+}
+
 #down_arrow_1{
   position: absolute;
     width: 24px;
