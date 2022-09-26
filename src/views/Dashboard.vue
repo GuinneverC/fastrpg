@@ -1,19 +1,25 @@
 <template>
   <div id="ficha-arquivo-rows">
 
-    <div class="arquivo" v-for="itens in fichas" :key="itens.id">
-    
-      <div class="registro" id="ficha-title">
+    <div class="registro">
+
+    <div v-for="itens in fichas" :key="itens.id">
       
-        <div class="ficha">
+      <div class="ficha">
+
       <div id="img"></div>
       <div>Nome: {{ itens.nome }}</div>
       <div>Nível: {{ itens.nivel }}</div>
       <div>Raça: {{ itens.raca }}</div>
       <div>Classe: {{ itens.classe }}</div>
       <div>Vida Máxima: {{ itens.vidamax }}</div><br>
+      <button id="expandbtn" @click="expand"> Expandir </button>
+
+      </div>
       
-      <!-- <div>Habilidade Principal: {{ itens.habilidade }}</div>
+      <div id="extrainfo">
+
+      <div>Habilidade Principal: {{ itens.habilidade }}</div>
       <div>Força: {{ itens.forca }}</div>
       <div>Destreza: {{ itens.destreza }}</div>
       <div>Constituição: {{ itens.constituicao }}</div>
@@ -24,8 +30,9 @@
       <div>Velocidade: {{ itens.deslocamento }}</div>
       <div>Idioma: {{ itens.idioma }}</div>
       <div>Caracteristicas: {{ itens.caracteristicas }}</div>
-      <div>Descrição: {{ itens.descricao }}</div> -->
-     </div>
+      <div>Descrição: {{ itens.descricao }}</div>
+     
+      </div>
      
       <div>
         <button v-if="uid">
@@ -88,6 +95,14 @@ export default {
         this.$router.push({ path: "/login" });
       }
     },
+    expand(){
+      var extrainfo=document.getElementById("extrainfo");
+      var expandbtn=document.getElementById("expandbtn");
+
+      if(){
+        
+      }
+    },
   },
   mounted() {
     this.buscarFichasDoServidor();
@@ -98,24 +113,36 @@ export default {
 
 <style scoped>
 
+#extrainfo{
+  display: none;
+}
+
 #img{
   height: 150px;
   width: 150px;
-  background-color: aquamarine;
-margin-left: 25px;
+  background-color: rgb(154, 202, 186);
+  margin-left: 25px;
 }
 
 .ficha{
-  background-color: aliceblue;
+  display: grid;
+  background-color: rgb(233, 232, 219);
   height: 350px;
-  width: 200px;
+  width: 400px;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 5px;
+  
 }
 
 .registro {
   display: grid;
-  grid-template-columns: 33% 33% 33%;
+  grid-template-columns: 25% 25% 25% 25%;
   margin-left: 3%;
   grid-column-gap: 10px;
-  
 }
+
+#expandbtn{
+  background-color: rgb(235, 209, 175);
+}
+
 </style>
