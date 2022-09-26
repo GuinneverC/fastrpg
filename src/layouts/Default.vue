@@ -113,8 +113,8 @@ export default {
     }
   }, 
   mounted() {
-    this.uid = fb.auth.currentUser.uid;
     this.buscarPerfilDoServidor();
+    this.uid = fb.auth.currentUser.uid;
   }
 }
 </script>

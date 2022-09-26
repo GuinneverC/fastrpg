@@ -3,7 +3,7 @@
 
     <div class="registro">
 
-    <div v-for="itens in fichas" :key="itens.id">
+    <div v-for="(itens,index) in fichas" :key="index">
       
       <div class="ficha">
 
@@ -13,11 +13,11 @@
       <div>Raça: {{ itens.raca }}</div>
       <div>Classe: {{ itens.classe }}</div>
       <div>Vida Máxima: {{ itens.vidamax }}</div><br>
-      <button id="expandbtn" @click="expand"> Expandir </button>
+      <button class="expandbtn" @click="expand(index)"> Expandir </button>
 
-      </div>
+      <div class="showhide"> </div>
       
-      <div id="extrainfo">
+      <div class="extrainfo">
 
       <div>Habilidade Principal: {{ itens.habilidade }}</div>
       <div>Força: {{ itens.forca }}</div>
@@ -32,8 +32,12 @@
       <div>Caracteristicas: {{ itens.caracteristicas }}</div>
       <div>Descrição: {{ itens.descricao }}</div>
      
+      
+
       </div>
-     
+      </div>
+      
+      
       <div>
         <button v-if="uid">
           <v-icon class="like-btn">mdi-thumb-up-outline</v-icon>
@@ -42,8 +46,6 @@
         <button v-if="uid === itens.owner" class="delete-btn">
           <v-icon>mdi-delete</v-icon>
         </button>
-      
-      
       
       </div>
     </div>
@@ -95,12 +97,19 @@ export default {
         this.$router.push({ path: "/login" });
       }
     },
-    expand(){
-      var extrainfo=document.getElementById("extrainfo");
-      var expandbtn=document.getElementById("expandbtn");
-
-      if(){
-        
+    expand(index){
+      var extrainfo=document.querySelectorAll(".extrainfo")[index];
+      var expandbtn=document.querySelectorAll(".expandbtn")[index];
+      var showhide=document.querySelectorAll(".showhide")[index];
+      if(showhide.style.display === "none"){
+        showhide.style.display = "inline";
+        extrainfo.style.display = "none";
+        expandbtn.innerHTML = "Expandir";
+      }
+      else{
+        showhide.style.display = "none";
+        extrainfo.style.display = "inline";
+        expandbtn.innerHTML = "Retrair";
       }
     },
   },
@@ -113,7 +122,7 @@ export default {
 
 <style scoped>
 
-#extrainfo{
+.extrainfo{
   display: none;
 }
 
@@ -122,6 +131,7 @@ export default {
   width: 150px;
   background-color: rgb(154, 202, 186);
   margin-left: 25px;
+  margin-top: 10px;
 }
 
 .ficha{
@@ -141,8 +151,9 @@ export default {
   grid-column-gap: 10px;
 }
 
-#expandbtn{
+.expandbtn{
   background-color: rgb(235, 209, 175);
+  margin-right: 25px;
 }
 
 </style>
