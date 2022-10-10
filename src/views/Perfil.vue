@@ -1,20 +1,24 @@
 <template>
-  <v-container class="pa-8" fluid id="background">
+
+  <v-container fluid class=background>
     
       <v-container>
 
-      <div id="profile_background"></div>
+      <div class="text_profile"> Perfil </div>
 
-      <img id="profile_icon" src="../assets/images/profile_icon.png">
-      <img  id="add_photo_icon" src="../assets/images/add_photo_icon.png">
+      <div class=profile_background></div>
+
+      <img class=profile_icon src="../assets/images/profile_icon.png">
+      <img class=add_photo_icon src="../assets/images/add_photo_icon.png">
 
         
-        <v-text-field id="information_fields" label="Nome" ></v-text-field>
-        <v-text-field id="information_fields" label="Sobrenome" ></v-text-field>
-        <v-text-field id="information_fields" label="Turma" ></v-text-field>
-        <v-btn id="save_profile" @click="salvarPerfil" >Salvar Perfil</v-btn>
+        <v-text-field class=information_fields label="Nome" ></v-text-field>
+        <v-text-field class=information_fields label="Sobrenome" ></v-text-field>
+        <v-text-field class=information_fields label="Turma" ></v-text-field>
+       
+        <v-btn class=save_profile @click="salvarPerfil" >Salvar Perfil</v-btn>
       
-      <v-btn id="change_photo">Alterar Imagem</v-btn>
+        <v-btn class=change_photo> Alterar Imagem </v-btn>
 
 
       </v-container>
@@ -70,130 +74,72 @@ export default {
 
 <style>
 
-#background{
+.background{
   background-color: #EEE9D9;
   height: 2000px;
 }
 
-#information_fields{
-  display: flex;
-flex-direction: column;
-align-items: flex-start;
-padding: 0px;
-gap: 46px;
-
-position: absolute;
-width: 428.03px;
-height: 372.5px;
-left: calc(50% - 428.03px/2 + 311.02px);
-top: calc(50% - 372.5px/2 - 28.75px);
+.text_profile{
+  text-align: center;
+  font-size: 45px;
 }
 
-#profile_background{
+.profile_background{
   position: absolute;
-  width: 1181px;
+  width: 1180px;
   height: 810px;
-  left: 370px;
-  top: 146px;
+  left: 50;
+  top: 150px;
   background: linear-gradient(180deg, #DCD6C2 0%, #C4B999 100%);
   border-radius: 40px;
 }
 
-#profile_icon{
-  position: absolute;
-width: 353px;
-height: 353px;
-left: 449px;
-top: 251px;
+.profile_icon{
+  position: relative;
+  width: 250px;
+  height: 250px;
+  left: 80px;
+  top: 180px;
 }
 
-#add_photo_icon{
-  position: absolute;
-width: 110px;
-height: 110px;
-left: 684px;
-top: 489px;
-
+.add_photo_icon{
+  position: relative;
+  width: 100px;
+  height: 100px;
+  top: 180px;
+  left: -10px;
 }
 
-#name_field{
-  position: absolute;
-  width: 428px;
+.information_fields{
+  display: flex;
+  left: 550px;
+  width: 550px;
+  position: relative;
+  top: -40px;
+  height: 75px;
+}
+
+.save_profile{
+  position: relative;
+  width: 400px;
+  height: 150px;
+  left: 385px;
+  top: 270px;
+  border-radius: 10px;
+  font-style: normal;
+  font-size: 40px;
+  text-align: center;
+}
+
+.change_photo{
+  position: relative;
+  width: 300px;
   height: 54px;
-  left: 1057px;
-  top: 325px;
-
-  font-family: 'Karla';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 37px;
-}
-
-#last_name_field{
-  position: absolute;
-  width: 313px;
-  height: 89px;
-  left: 1057px;
-  top: 425px;
-  font-family: 'Karla';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 37px;
-  color: #000000;
-
-}
-
-#class_field{
-  position: absolute;
-  width: 313px;
-  height: 89px;
-  left: 1057px;
-  top: 560px;
-  font-family: 'Karla';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 37px;
-  color: #000000;
-}
-
-#save_profile{
-  position: absolute;
-width: 413.36px;
-height: 90.27px;
-left: calc(50% - 413.36px/2 - 0.32px);
-top: 810px;
-background: #6C5D3F;
-border-radius: 10px;
-
-font-family: 'Karla';
-font-style: normal;
-font-weight: 400;
-font-size: 40px;
-line-height: 47px;
-text-align: center;
-
-color: #EEE9D9;
-}
-
-#change_photo{
-  position: absolute;
-width: 325px;
-height: 53.33px;
-left: 470px;
-top: 640px;
-background: #AE9D7E;
-border-radius: 10px;
-
-font-family: 'Karla';
-font-style: normal;
-font-weight: 400;
-font-size: 26px;
-line-height: 37px;
-text-align: center;
-color: #423825;
+  left: -330px;
+  top: -20px;
+  border-radius: 10px;
+  font-size: 40px;
+  text-align: center;
 }
 
 </style>
