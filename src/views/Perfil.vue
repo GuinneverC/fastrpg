@@ -88,10 +88,11 @@ export default {
   position: absolute;
   width: 1180px;
   height: 810px;
-  left: 50;
+  align-content: center;
   top: 150px;
   background: linear-gradient(180deg, #DCD6C2 0%, #C4B999 100%);
   border-radius: 40px;
+  margin-left: 300px;
 }
 
 .profile_icon{
@@ -100,6 +101,7 @@ export default {
   height: 250px;
   left: 80px;
   top: 180px;
+  margin-left: 300px;
 }
 
 .add_photo_icon{
@@ -117,6 +119,8 @@ export default {
   position: relative;
   top: -40px;
   height: 75px;
+  margin-left: 300px;
+
 }
 
 .save_profile{
@@ -129,6 +133,8 @@ export default {
   font-style: normal;
   font-size: 40px;
   text-align: center;
+  margin-left: 300px;
+
 }
 
 .change_photo{
