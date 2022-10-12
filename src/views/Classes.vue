@@ -1,11 +1,18 @@
 <template>
 
-  <v-container class="pa-8" fluid>
+  <v-container fluid>
 
     <h1 id="class_title">Classes</h1>
 
+<carrossel @next="next" @prev="prev">
+
     <v-list>
-      <v-list-item v-for="classe of classes" v-bind:key="classe.id">
+      <carrosselslide class="class-container" v-for="(classe, index) of classes" 
+      v-bind:key="classe.id"
+      :index="index"
+      :visibleSlide="visibleSlide"
+      :direction="direction">
+
         <v-list-item-content><h3 id="classe-title">
           {{ classe.title }}</h3>
           Força: {{ classe.Força }}, <br>
@@ -18,20 +25,35 @@
           Habilidade Principal: {{ classe.habilidade }} <br />
           Descrição: {{ classe.descricao }} <br />
         </v-list-item-content>
-        <br />
-      </v-list-item>
+
+      </carrosselslide>
     </v-list>
+
+  </carrossel>
   </v-container>
 </template>
 
 <script>
+
+import carrossel from "./Carrossel.vue"
+import carrosselslide from "./CarrosselSlide.vue"
+
 import { classes } from "@/assets/db/db";
 export default {
   data() {
     return {
       classes: null,
+      visibleSlide: 0,
+      direction: '',
     };
   },
+
+  computed: {
+    classLen() {
+      return this.classes.lenght;
+    }
+  },
+
   methods: {
     async getFichas() {
       this.classes = classes;
@@ -40,43 +62,44 @@ export default {
   mounted() {
     this.getFichas();
   },
+
+  next() {
+      if(this.visibleSlide >= this.classLen() - 1) {
+        this.visibleSlide = 0;
+      }
+      else {
+        this.visibleSlide++;
+      }
+      this.direction = "left"
+    }, 
+
+    prev() {
+      if(this.visibleSlide <= 0) {
+        this.visibleSlide = this.classLen() - 1;
+      }
+      else {
+        this.visibleSlide--;
+      }
+      this.direction = "right"
+    },
+
+    components: {
+      carrossel,
+      carrosselslide,
+    }
 };
 </script>
 
 <style scoped>
 
-.extrainfo{
-  display: none;
+.class-container {
+  background-color: rgb(217, 214, 181);
+  height: 300px;
+  width: 600px;
+  left: calc(50% - 300px);
+  border-radius: 5%;
+  margin: 20px;
 }
 
-#img{
-  height: 150px;
-  width: 150px;
-  background-color: rgb(154, 202, 186);
-  margin-left: 25px;
-  margin-top: 10px;
-}
-
-.ficha{
-  display: grid;
-  background-color: rgb(233, 232, 219);
-  height: 350px;
-  width: 400px;
-  grid-template-columns: 50% 50%;
-  grid-column-gap: 5px;
-  
-}
-
-.registro {
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  margin-left: 3%;
-  grid-column-gap: 10px;
-}
-
-.expandbtn{
-  background-color: rgb(235, 209, 175);
-  margin-right: 25px;
-}
 
 </style>

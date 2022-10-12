@@ -2,8 +2,10 @@
   <div>
     <div>
       <Message :msg="msg" v-show="msg" />
+
       <form id="fichaform">
-        <h3>Criação Rápida de Ficha</h3>
+
+        <h3 class="title">Criação Rápida de Ficha</h3>
         <div class="input-container-nome" id="gerador_nomes">
         <input type="text" id="nome" name="nome" v-model="nome" placeholder="Nome do Personagem">
         <v-icon class="btn" slot="append" @click="gerar()">mdi-dice-multiple</v-icon>
@@ -38,6 +40,7 @@
         <div class="input-container">
           <v-btn id="enviar" class="submit-btn" @click="adicionar">Criar minha Ficha</v-btn>
         </div>
+        
       </form>
     </div>
   </div>
@@ -119,6 +122,14 @@ export default {
 </script>
 
 <style scoped>
+
+.title {
+  text-align: center;
+  color: rgb(99, 15, 15);
+}
+
+
+
  #fichaform{
    max-width: 400px;
    margin: 0 auto;
