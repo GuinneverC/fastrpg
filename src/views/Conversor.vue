@@ -10,20 +10,20 @@
       <v-img id="coins_icon_2" src="../assets/images/coins-icon.png"></v-img>
 
       <div id="coin_selector_1"></div>
-      <h1 id="coin_selector_text_1">Selecione a moeda</h1>
+      <h1 id="coin_selector_text_1">Ouro</h1>
       <div id="coin_selector_2"></div>
       <h1 id="coin_selector_text_2">Selecione a moeda</h1>
 
 
-      <v-img id="down_arrow_1" src="../assets/images/down-arrow.png"></v-img>
+      <!-- <v-img id="down_arrow_1" src="../assets/images/down-arrow.png"></v-img> -->
       <v-img id="down_arrow_2" src="../assets/images/down-arrow.png"></v-img>
 
       <input type="number" name="po_pc" id="input_1" v-model.number="po_pc_resultado" placeholder="Digite um Número" v-on:tab="gerar_po_pc">
 
       <v-img id="center_arrow" src="../assets/images/arrow-right.png"></v-img>
 
-      <input type="number" name="po_pp" id="input_2" v-model.number="po_pp_resultado" placeholder="Digite um Número"
-        v-on:tab="gerar_po_pp">
+      <!-- <input type="number" name="po_pp" id="input_2" v-model.number="po_pp_resultado" placeholder="Digite um Número"
+        v-on:tab="gerar_po_pp"> -->
 
       <div id="result_background"></div>
       <h4 id="result_title">Resultado</h4>
@@ -131,7 +131,7 @@ export default {
 
 #coin_selector_text_1{
   position: absolute;
-  left: 525px;
+  left: 625px;
   top: 574px;
   font-family: 'Karla';
   font-style: normal;
@@ -144,7 +144,7 @@ export default {
 
 #coin_selector_text_2{
   position: absolute;
-  left: 1135px;
+  left: 1130px;
   top: 574px;
   font-family: 'Karla';
   font-style: normal;
@@ -164,13 +164,14 @@ export default {
 }
 
 #input_1{
-  position: absolute;
-  width: 350px;
-  height: 30px;
-  left: 482px;
-  top: 639px;
+  position: relative;
+  width: 200px;
+  height: 40px;
+  top: 660px;
+  left: 860px;
   background: #B9AE8B;
   border-radius: 5px;
+  text-align: center;
 }
 
 #coin_selector_2 {
