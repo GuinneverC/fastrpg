@@ -121,6 +121,7 @@ export default {
 </script>
 
 <style>
+
 #dices_title{
   position: absolute;
     width: 302px;
@@ -149,13 +150,19 @@ export default {
 
 
 .grid-container {
+    position: relative;
     display: grid;
     grid-template-columns:1fr 1fr 1fr;
     grid-template-rows: 1;
-    grid-gap: 20px;
+    align-content: center;
+    grid-column-gap: 0;
+    left: 300px;
+    right: 300px;
+    top: 200px;
+    bottom: 1500px;
 }
 #d4_text{
-    position: absolute;
+    position: relative;
       width: 128px;
       height: 29px;
       left: 316px;
@@ -167,7 +174,7 @@ export default {
 }
 
 #d6_text {
-  position: absolute;
+  position: relative;
     width: 128px;
     height: 29px;
     left: 526px;
@@ -179,7 +186,7 @@ export default {
 }
 
 #d8_text {
-  position: absolute;
+  position: relative;
     width: 128px;
     height: 29px;
     left: 738px;
@@ -191,7 +198,7 @@ export default {
 }
 
 #d10_text {
-  position: absolute;
+  position: relative;
     width: 128px;
     height: 29px;
     left: 316px;
@@ -203,7 +210,7 @@ export default {
 }
 
 #d12_text {
-  position: absolute;
+  position: relative;
     width: 128px;
     height: 29px;
     left: 526px;
@@ -215,7 +222,7 @@ export default {
 }
 
 #d20_text {
-  position: absolute;
+  position: relative;
     width: 128px;
     height: 29px;
     left: 738px;
@@ -226,9 +233,4 @@ export default {
     border-radius: 5px;
 }
 
- #titulo {
-   color:#222;
-   padding: 5px 10px;
-   border-left: 4px solid #8b0292;
- }
 </style>
