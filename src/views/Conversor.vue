@@ -1,5 +1,5 @@
 <template>
-  <div id="converter">
+  <div class="converter">
   <form id="Conversor">
 
   <div id="converter_background"></div>
@@ -11,36 +11,26 @@
 
       <div id="coin_selector_1"></div>
       <h1 id="coin_selector_text_1">Ouro</h1>
-      <div id="coin_selector_2"></div>
-      <h1 id="coin_selector_text_2">Selecione a moeda</h1>
-
-
-      <!-- <v-img id="down_arrow_1" src="../assets/images/down-arrow.png"></v-img> -->
+      <div id="coin_selector_2">
+        <select v-model="destiny_coin" class="selector" @change="calcular">
+          <option value="" disabled>Selecione a moeda</option>
+          <option value="prata">Prata</option>
+          <option value="cobre">Cobre</option>
+          <option value="platina">Platina</option>
+        </select>
+      </div>
+      
       <v-img id="down_arrow_2" src="../assets/images/down-arrow.png"></v-img>
 
-      <input type="number" name="po_pc" id="input_1" v-model.number="po_pc_resultado" placeholder="Digite um Número" v-on:tab="gerar_po_pc">
+      <input type="number" name="coin_origin" id="input_1" v-model.number="convert_origin" placeholder="Digite um Número">
 
       <v-img id="center_arrow" src="../assets/images/arrow-right.png"></v-img>
 
-      <!-- <input type="number" name="po_pp" id="input_2" v-model.number="po_pp_resultado" placeholder="Digite um Número"
-        v-on:tab="gerar_po_pp"> -->
-
       <div id="result_background"></div>
       <h4 id="result_title">Resultado</h4>
-      <h2 id="result_number">{{po_pc_resultado*100}}</h2>
+      <h2 id="result_number">{{convert_result}}</h2>
       <br>
       
-      <!-- <h3 id="po_pp">  Converter Ouro para Prata </h3> -->
-      <!-- <v-icon class="btn" slot="append" @click="gerar_po_pp">mdi-dice-d12-outline</v-icon>
-      <br>
-      <h4> Resultado: {{po_pp_resultado*10}} </h4>
-      <br>
-      <br>
-      <h3 id="po_platina">  Converter Ouro para Platina </h3>
-      <input type="number" name="po_platina" id="po_platina" v-model.number="po_platina_resultado" placeholder="Digite um Número" v-on:tab="gerar_po_platina">
-      <v-icon class="btn" slot="append" @click="gerar_po_platina">mdi-dice-d12-outline</v-icon>
-      <br>
-      <h4> Resultado: {{po_platina_resultado*0.1}} </h4> -->
     </div>
   </form>
   </div>
@@ -50,28 +40,30 @@
 export default {
   data (){
     return{
-      po_pc_resultado: {},
-      po_pp_resultado: {},
-      po_platina_resultado: {},
+      destiny_coin: '',
+      convert_origin: '',
+      convert_result: 0,
           }
   },
      methods:{
-    gerar_po_pc() {
-      this.po_pc_resultado = {}
-    },
-    gerar_po_pp() {
-      this.po_pp_resultado = {}
-    },
-    gerar_po_platina() {
-      this.po_platina_resultado = {}
-    },
+      calcular() {
+        if (this.destiny_coin === 'prata') {
+          this.convert_result = this.convert_origin*100
+        } else if (this.destiny_coin === 'cobre') {
+          this.convert_result = this.convert_origin*1000
+        } else if (this.destiny_coin === 'platina') {
+          this.convert_result = this.convert_origin *0.1
+        } else {
+          this.convert_result = 'Algo Errado'
+        }
+      },
   }
 
 }
 </script>
 
 <style>
-#converter{
+.converter{
   background-color: #EEE9D9;
   height: 2000px;
 }
@@ -140,6 +132,19 @@ export default {
   line-height: 37px;
   text-align: center;
   color: #EEE9D9;
+}
+.selector {
+  font-family: 'Karla';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 37px;
+  text-align: center;
+  color: #EEE9D9;
+  width: 100%;
+  height: 100%;
+  background-color: #647561;
+  border-radius: 10px;
 }
 
 #coin_selector_text_2{
