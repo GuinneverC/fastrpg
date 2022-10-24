@@ -1,54 +1,64 @@
 <template>
   <div>
-    <div>
-      <Message :msg="msg" v-show="msg" />
+
+      <h3 class="titulo">Criação Rápida de Ficha</h3>
 
       <form id="fichaform">
 
-        <h3 class="titulo">Criação Rápida de Ficha</h3>
-
-        <div class="input-container-nome" id="gerador_nomes">
+        <div class="input_name" id="gerador_nomes">
         <input type="text" id="nome" name="nome" v-model="nome" placeholder="Nome do Personagem">
-        <v-icon class="btn" slot="append" @click="gerar()">mdi-dice-multiple</v-icon>
+        <v-icon id="icon_dice" class="btn" slot="append" @click="gerar()">mdi-dice-multiple</v-icon>
         </div>
+
+
         <div class="input-container">
-          <label id="classe" for="classe">Classe: </label>
-          <select name="classe" id="classe" v-model="classe">
+          <label class="class_selector" for="classe">Classe: </label>
+
+          <select name="classe" class="class_selector" v-model="classe">
               <option value="" disabled>Selecione sua Classe</option>
               <option v-for="classe in classes" 
               :key="classe.id" :value="classe">{{ classe.title }}
               </option>
           </select>
+
         </div>
+
+
         <div class="input-container">
-          <label id="raca" for="raca">Raça: </label>
-          <select name="raca" id="raca" v-model="raca">
+          <label class="breed_selector" for="raca">Raça: </label>
+          <select name="raca" class="breed_selector" v-model="raca">
               <option value="" disabled>Selecione sua Raça</option>
               <option v-for="raca in racas" 
               :key="raca.id" :value="raca">{{ raca.title }}
               </option>
           </select>
+
         </div>
+
+
         <div class="input-container">
-          <label id="nivel" for="nivel">Nivel: </label>
-          <select name="nivel" id="nivel" v-model="nivel">
+          <label class="level_selector" for="nivel">Nivel: </label>
+
+          <select name="nivel" class="level_selector" v-model="nivel">
               <option value="" disabled>Selecione seu Nivel</option>
               <option v-for="nivel in niveis" 
               :key="nivel.id" :value="nivel">{{ nivel.title }}
               </option>
           </select>
+
         </div>
+
+
         <div class="input-container">
-          <v-btn id="enviar" class="submit-btn" @click="adicionar">Criar minha Ficha</v-btn>
+          <v-btn class="create" @click="adicionar">Criar</v-btn>
         </div>
         
       </form>
-    </div>
+
   </div>
 </template>
 
 <script>
-import Message from './Message.vue';
 import gerarnome from '@/utils/gerarnome.js'
 import gerarsobrenome from '@/utils/gerarsobrenome.js'
 import * as fb from "@/plugins/firebase"
@@ -117,7 +127,6 @@ export default {
     this.uid = fb.auth.currentUser.uid;
   },
   components: {
-    Message
   }
 }
 </script>
@@ -135,7 +144,10 @@ export default {
   margin-bottom: 25px;
 }
 
-
+#icon_dice {
+  position: relative;
+  align-self: right;
+}
 
  #fichaform{
    max-width: 400px;
@@ -146,15 +158,8 @@ export default {
    display: flex;
    flex-direction: column;
  }
- .input-container-nome {
-  display: flex;
-  flex-direction: row;
-  width: 600px;
-  margin-bottom: 15px;
-  padding: 5px 10px;
 
-}
-  #classe,#raca,#nivel {
+  .class_selector,.breed_selector,.level_selector,.input_name {
    margin-bottom: 15px;
    color:#222;
    padding: 5px 10px;
@@ -173,9 +178,9 @@ export default {
    width: 300px;
  }
 
-#enviar{
-   background-color: #8f1b1b;
-   color: rgb(255, 255, 255);
+  .create{
+   background-color: #4b3737;
+   color: rgb(12, 7, 7);
    font-weight: bold;
    border: 2px solid #222;
    padding: 10px;
@@ -185,8 +190,8 @@ export default {
    transition: .5s;
  }
 
-#enviar:hover{
-   background-color: transparent;
-   color: #222;
+.create:hover{
+   background-color: #8f1b1b;
+   color: rgb(255, 255, 255);
  }
 </style>

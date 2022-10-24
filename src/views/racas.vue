@@ -1,7 +1,8 @@
 <template>
 
     <v-container class="pa-8" fluid>
-    <h1 class="h1">Raças</h1>
+
+    <h1 class="title">Raças</h1>
 
     <carrossel @next="next" @prev="prev">
 
@@ -92,7 +93,7 @@ computed: {
    font-weight: bold;
    padding: 5px 10px;
  }
-.h1{
+.title{
   padding: 5px 10px;
 }
 
