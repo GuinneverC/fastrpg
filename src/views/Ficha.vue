@@ -5,7 +5,8 @@
 
       <form id="fichaform">
 
-        <h3 class="title">Criação Rápida de Ficha</h3>
+        <h3 class="titulo">Criação Rápida de Ficha</h3>
+
         <div class="input-container-nome" id="gerador_nomes">
         <input type="text" id="nome" name="nome" v-model="nome" placeholder="Nome do Personagem">
         <v-icon class="btn" slot="append" @click="gerar()">mdi-dice-multiple</v-icon>
@@ -13,7 +14,7 @@
         <div class="input-container">
           <label id="classe" for="classe">Classe: </label>
           <select name="classe" id="classe" v-model="classe">
-              <option value="">Selecione sua Classe</option>
+              <option value="" disabled>Selecione sua Classe</option>
               <option v-for="classe in classes" 
               :key="classe.id" :value="classe">{{ classe.title }}
               </option>
@@ -22,7 +23,7 @@
         <div class="input-container">
           <label id="raca" for="raca">Raça: </label>
           <select name="raca" id="raca" v-model="raca">
-              <option value="">Selecione sua Raça</option>
+              <option value="" disabled>Selecione sua Raça</option>
               <option v-for="raca in racas" 
               :key="raca.id" :value="raca">{{ raca.title }}
               </option>
@@ -31,7 +32,7 @@
         <div class="input-container">
           <label id="nivel" for="nivel">Nivel: </label>
           <select name="nivel" id="nivel" v-model="nivel">
-              <option value="">Selecione seu Nivel</option>
+              <option value="" disabled>Selecione seu Nivel</option>
               <option v-for="nivel in niveis" 
               :key="nivel.id" :value="nivel">{{ nivel.title }}
               </option>
@@ -57,13 +58,13 @@ export default {
   data(){
 
     return {
-      classes: null,
+      classes: '',
       racas: null,
       niveis: null,
       nome: '',
-      classe: null,
-      raca: null,
-      nivel:  null,
+      classe: '',
+      raca: '',
+      nivel:  '',
       msg: null,
       uid: '',
       ficha: [],
@@ -123,9 +124,15 @@ export default {
 
 <style scoped>
 
-.title {
+.titulo{
   text-align: center;
-  color: rgb(99, 15, 15);
+  margin: 0 auto;
+  font-weight: bold;
+  font-size:25px;
+  color: #8f1b1b;
+  padding: 5px 10px;
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 
@@ -145,14 +152,13 @@ export default {
   width: 600px;
   margin-bottom: 15px;
   padding: 5px 10px;
-  border-left: 4px solid #8b0292;
 
 }
   #classe,#raca,#nivel {
    margin-bottom: 15px;
    color:#222;
    padding: 5px 10px;
-   border-left: 4px solid #8b0292;
+   border: 1px solid #8f1b1b;
  }
 
  .label {
@@ -160,7 +166,6 @@ export default {
    margin-bottom: 15px;
    color:#222;
    padding: 5px 10px;
-   border-left: 4px solid #8b0292;
  }
 
  .input,select {
@@ -169,8 +174,8 @@ export default {
  }
 
 #enviar{
-   background-color: #a23ea7;
-   color: #222;
+   background-color: #8f1b1b;
+   color: rgb(255, 255, 255);
    font-weight: bold;
    border: 2px solid #222;
    padding: 10px;

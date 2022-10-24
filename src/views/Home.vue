@@ -134,7 +134,7 @@ export default {
   text-align: center;
   margin: 0 auto;
   font-weight: bold;
-  font-size: 50px;
+  font-size:50px;
   color: #8f1b1b;
   padding: 5px 10px;
 }
