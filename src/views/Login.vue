@@ -1,22 +1,27 @@
 <template>
-  <v-container fill-height fluid text-center>
-    <v-container>
-      <v-row>
-        <v-col class="purple--text text-center mx-auto pb-4" 
-        cols="1" 
-        sm="3" 
-        offset="4"
-        ><h1 class="h1">Login</h1></v-col>
-      </v-row>
-      <v-row class="elevation-3 mx-auto">
-        <v-col cols="auto">
-          <v-img max-height="200" max-width="250" 
-          src="../assets/images/logo-rpg.png"></v-img>
-        </v-col>
-        <v-col>
-          <v-form>
-            <v-text-field label="Email" color=#8b0292 v-model="user.email"></v-text-field>
+  <v-container>
+    <v-container class="content">
+
+
+      
+      
+      <div class="image">
+        <div cols="auto">
+          <v-img src="../assets/images/logo-rpg.png"></v-img>
+        </div>
+      </div>
+      
+      <div class="login_form">
+        <v-row>
+          <div class="text_login">
+            <h1 class="h1">Login</h1>
+          </div>
+        </v-row>
+        <v-form>
+            <v-text-field class="email_field" label="Email" color=#8b0292 v-model="user.email"></v-text-field>
+
             <v-text-field
+            class="password_field"
               color=#8b0292
               label="Senha"
               @keyup.enter="login"
@@ -26,11 +31,14 @@
               @click:append="show = !show"
               >
             </v-text-field>
-            <v-btn color=#8b0292 class="white--text" @click="login">Login</v-btn>
-            <v-btn class="ml-2" color="warning" @click="reset">Cancelar</v-btn>
+
+            <v-btn class="login_btn" @click="login">Login</v-btn>
+
+            <v-btn class="cancel_btn" @click="reset">Cancelar</v-btn>
+          
           </v-form>
-        </v-col>
-      </v-row>
+        </div>
+
     </v-container>
     <v-snackbar 
     color="orange" 
@@ -102,5 +110,53 @@ export default {
 </script>
 
 <style>
+
+.content {
+/* pagina inteira */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-areas: 
+  'image login_form';
+}
+
+.text_login {
+  /* titulo login */
+}
+
+.image {
+  /* imagem */
+  display: grid;
+  grid-area: image;
+}
+
+.v-responsive__content {
+  width: 800px;
+}
+
+.image img {
+  /* width: 10px; */
+}
+
+.login_form {
+  /* formulario de login */
+  display: grid;
+  grid-area: login_form;
+}
+
+.email_field {
+  /* campo de email */
+}
+
+.password_field {
+  /* campo de senha */
+}
+
+.login_btn{
+  /* botao de login */
+}
+
+.cancel_btn {
+  /* botao de cancelar */
+}
 
 </style>
