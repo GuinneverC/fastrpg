@@ -12,39 +12,40 @@
 
 
         <div class="input-container">
-          <label class="class_selector" for="classe">Classe: </label>
-
-          <select name="classe" class="class_selector" v-model="classe">
+          <label class="class_selector" for="classe">Classe: 
+            <select name="classe" class="class_selector" v-model="classe">
               <option value="" disabled>Selecione sua Classe</option>
               <option v-for="classe in classes" 
               :key="classe.id" :value="classe">{{ classe.title }}
               </option>
           </select>
+          </label>
 
         </div>
 
 
         <div class="input-container">
-          <label class="breed_selector" for="raca">Raça: </label>
-          <select name="raca" class="breed_selector" v-model="raca">
+          <label class="breed_selector" for="raca">Raça: 
+            <select name="raca" class="breed_selector" v-model="raca">
               <option value="" disabled>Selecione sua Raça</option>
               <option v-for="raca in racas" 
               :key="raca.id" :value="raca">{{ raca.title }}
               </option>
           </select>
+          </label>
 
         </div>
 
 
         <div class="input-container">
-          <label class="level_selector" for="nivel">Nivel: </label>
-
-          <select name="nivel" class="level_selector" v-model="nivel">
+          <label class="level_selector" for="nivel">Nivel: 
+            <select name="nivel" class="level_selector" v-model="nivel">
               <option value="" disabled>Selecione seu Nivel</option>
               <option v-for="nivel in niveis" 
               :key="nivel.id" :value="nivel">{{ nivel.title }}
               </option>
           </select>
+          </label>
 
         </div>
 

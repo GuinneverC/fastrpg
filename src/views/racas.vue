@@ -48,21 +48,17 @@ export default {
   },
 
 computed: {
-  classLen() {
-      return this.classes.lenght;
+  racesLen() {
+      return this.racas.lenght;
     }
 },
 
   methods: {
     async getFichas(){
-      this.racas = racas;}
-},
-  mounted(){
-    this.getFichas()
-  },
-
-  next() {
-      if(this.visibleSlide >= this.classLen() - 1) {
+      this.racas = racas;
+    },
+    next() {
+      if(this.visibleSlide >= this.racesLen - 1) {
         this.visibleSlide = 0;
       }
       else {
@@ -73,14 +69,17 @@ computed: {
 
     prev() {
       if(this.visibleSlide <= 0) {
-        this.visibleSlide = this.classLen() - 1;
+        this.visibleSlide = this.racesLen - 1;
       }
       else {
         this.visibleSlide--;
       }
       this.direction = "right"
     },
-
+},
+  mounted(){
+    this.getFichas();
+  },
     components: {
       carrossel,
       carrosselslide,

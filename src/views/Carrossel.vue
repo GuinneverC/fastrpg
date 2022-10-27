@@ -1,8 +1,8 @@
 <template>
     <div class="carrossel">
       <slot></slot>
-      <button @click="next" class="next">Next</button>
       <button @click="prev" class="prev">Prev</button>
+      <button @click="next" class="next">Next</button>
     </div>
   </template>
   

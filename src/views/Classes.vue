@@ -25,7 +25,6 @@
           Habilidade Principal: {{ classe.habilidade }} <br />
           Descrição: {{ classe.descricao }} <br />
         </v-list-item-content>
-
       </carrosselslide>
     </v-list>
 
@@ -58,13 +57,8 @@ export default {
     async getFichas() {
       this.classes = classes;
     },
-  },
-  mounted() {
-    this.getFichas();
-  },
-
-  next() {
-      if(this.visibleSlide >= this.classLen() - 1) {
+    next() {
+      if(this.visibleSlide >= this.classLen- 1) {
         this.visibleSlide = 0;
       }
       else {
@@ -75,14 +69,17 @@ export default {
 
     prev() {
       if(this.visibleSlide <= 0) {
-        this.visibleSlide = this.classLen() - 1;
+        this.visibleSlide = this.classLen - 1;
       }
       else {
         this.visibleSlide--;
       }
       this.direction = "right"
     },
-
+  },
+  mounted() {
+    this.getFichas();
+  },
     components: {
       carrossel,
       carrosselslide,
