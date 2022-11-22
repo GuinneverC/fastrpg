@@ -2,7 +2,7 @@
   <v-container class="pa-8" fluid id="page">
     <div>
       <div id="title">
-        FastRPG
+        FastRPG 
       </div>
 
       <div>
@@ -86,8 +86,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 import * as fb from "@/plugins/firebase";
 export default {
+  name: 'Home',
+  computed: {
+    ...mapState('auth', ['loggedIn'])
+  },
+
   data() {
     return {
       uid: "",
