@@ -63,6 +63,7 @@
 
 <script>
 import * as fb from '@/plugins/firebase'
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
@@ -86,23 +87,9 @@ export default {
     }
   },
   methods: {
-    async buscarPerfilDoServidor() {
-      this.uid = fb.auth.currentUser.uid;
-      const lognome = await fb.profileCollection.where("uid", "==", this.uid).get();
-      this.nome = "";
-      this.sobrenome = "";
-      for (const doc of lognome.docs){
-        this.nome = doc.data().nome
-        this.sobrenome = doc.data().sobrenome
-      }
-    },
-    logadoOuNao(){
-      if(this.uid){
-        this.$router.push({path: "/perfil"})
-      }else{
-        this.$router.push({path: "/login"})
-      }
-    },
+
+    ...mapActions('auth', ['logout']),
+
     async logout(){
       try{
         await fb.auth.signOut()
@@ -111,10 +98,28 @@ export default {
         console.log(error)
       }
     }
-  }, 
-  mounted() {
-    this.buscarPerfilDoServidor();
-    this.uid = fb.auth.currentUser.uid;
+
+  //   async buscarPerfilDoServidor() {
+  //     this.uid = fb.auth.currentUser.uid;
+  //     const lognome = await fb.profileCollection.where("uid", "==", this.uid).get();
+  //     this.nome = "";
+  //     this.sobrenome = "";
+  //     for (const doc of lognome.docs){
+  //       this.nome = doc.data().nome
+  //       this.sobrenome = doc.data().sobrenome
+  //     }
+  //   },
+  //   logadoOuNao(){
+  //     if(this.uid){
+  //       this.$router.push({path: "/perfil"})
+  //     }else{
+  //       this.$router.push({path: "/login"})
+  //     }
+  //   },
+  // }, 
+  // mounted() {
+  //   this.buscarPerfilDoServidor();
+  //   this.uid = fb.auth.currentUser.uid;
   }
 }
 </script>

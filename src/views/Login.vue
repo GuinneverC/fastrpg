@@ -32,7 +32,7 @@
               >
             </v-text-field>
 
-            <v-btn class="login_btn" @click="login">Login</v-btn>
+            <v-btn class="login_btn" @click="submitlogin">Login</v-btn>
 
             <v-btn class="cancel_btn" @click="reset">Cancelar</v-btn>
           
@@ -51,18 +51,21 @@
         <v-card-title>Conta não encontrada</v-card-title>
         <v-card-text>A conta não foi localizada. Deseja criar uma nova 
           conta com os dados informados?</v-card-text>
-        <v-card-actions>
+        <!-- <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="green darken-1" text @click="criarNovaConta">Sim</v-btn>
           <v-btn color="red darken-1" text @click="novaConta = false">Não</v-btn>
-        </v-card-actions>
+        </v-card-actions> -->
       </v-card>
     </v-dialog>
   </v-container>
 </template>
 
 <script>
-import * as fb from '@/plugins/firebase'
+// import * as fb from '@/plugins/firebase'
+
+import { mapActions} from 'vuex'
+
 export default {
   data(){
     return{
@@ -70,41 +73,53 @@ export default {
       show: false,
       errorLogin: false,
       novaConta: false,
+      email: {},
     };
   },
-  methods: {
-    reset() {
-      this.user = {};
-    },
-    async login() {
-      try {
-        await fb.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
-        this.$router.push({name:'Home'})
-      } catch(error) {
-        const errorCode = error.code
-        switch(errorCode) {
-          case "auth/wrong-password":
-            this.errorLogin = true
-            break
-          case "auth/invalid-email":
-            this.errorlogin = true
-            break
-          case "auth/user-not-found":
-            this.novaConta = true
-            break
-          default:
-            this.errorLogin = true
-            break
-        }
-      }
-    },
-    async criarNovaConta (){
-      this.novaConta = false
-      await fb.auth.createUserWithEmailAndPassword(
-        this.user.email, 
-        this.user.password);
-      this.login();
+  methods: { 
+
+    ...mapActions('auth',['login']),
+
+    submitlogin() {
+      this.login(this.usuario)
+      this.$router.push({name:'Home'})
     }
+
+    // reset() {
+    //   this.user = {};
+    // },
+    // async login() {
+    //   try {
+    //     await fb.auth.signInWithEmailAndPassword(this.user.email, this.user.password)
+    //     this.$router.push({name:'Home'})
+    //   } catch(error) {
+    //     const errorCode = error.code
+    //     switch(errorCode) {
+    //       case "auth/wrong-password":
+    //         this.errorLogin = true
+    //         break
+    //       case "auth/invalid-email":
+    //         this.errorlogin = true
+    //         break
+    //       case "auth/user-not-found":
+    //         this.novaConta = true
+    //         break
+    //       default:
+    //         this.errorLogin = true
+    //         break
+    //     }
+    //   }
+    // },
+
+
+
+    // async criarNovaConta (){
+    //   this.novaConta = false
+    //   await fb.auth.createUserWithEmailAndPassword(
+    //     this.user.email, 
+    //     this.user.password);
+    //   this.login();
+    // }
   }
 }
 </script>
