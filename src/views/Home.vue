@@ -103,7 +103,7 @@ export default {
     };
   },
   mounted() {
-    this.uid = fb.auth.currentUser.uid;
+    this.uid = "Mundo";
   },
   methods: {
     async buscarTarefasDoServidor() {

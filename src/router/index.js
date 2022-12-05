@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import { auth } from '../plugins/firebase'
+// import { Store } from 'vuex'
+import store from '../store'
+// import { auth } from '../plugins/firebase'
 ///import { component } from 'vue/types/umd'
 import Home from '../views/Home.vue'
 
@@ -11,6 +13,7 @@ const routes = [
     path: '/',
     component: () => import('@/layouts/Default'),
     meta: {
+      auth: false
       // requiresAuth: true
     },
     children: [
@@ -27,6 +30,10 @@ const routes = [
       {
         path: '/ficha',
         name: 'Ficha',
+        meta: {
+          auth: true
+          // requiresAuth: true
+        },
         component: () => import(/* webpackChunkName: "Ficha" */ '../views/Ficha.vue')
       },
       {
@@ -57,10 +64,13 @@ const routes = [
   },
   {
     path: '/',
-    component: () => import('@/layouts/Blank'),
+    component: () => import('@/layouts/Blank.vue'),
+    meta: {
+      auth: false,
+    },
     children: [{
     path: '/login',
-    name: 'Login',
+    name: 'login',
     component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue')
     }]
   }
@@ -72,12 +82,26 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach(( to, from, next) => {
-  const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
+// router.beforeEach(( to, from, next) => {
+//   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
 
-  if(requiresAuth && !auth.currentUser){
-    next('/login')
-  }else {next()}
+//   if(requiresAuth && !auth.currentUser){
+//     next('/login')
+//   }else {next()}
+// })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.auth)) {
+    if(!store.state.auth.loggedIn) {
+      next({
+        name: 'login'
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
 })
 
 

@@ -16,7 +16,7 @@
             <select name="classe" class="class_selector" v-model="classe">
               <option value="" disabled>Selecione sua Classe</option>
               <option v-for="classe in classes" 
-              :key="classe.id" :value="classe">{{ classe.title }}
+              :key="classe.id" :value="classe.id">{{ classe.title }}
               </option>
           </select>
           </label>

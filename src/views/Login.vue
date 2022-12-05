@@ -18,8 +18,7 @@
           </div>
         </v-row>
         <v-form>
-            <v-text-field class="email_field" label="Email" color=#8b0292 v-model="user.email"></v-text-field>
-
+            <v-text-field class="email_field" label="Email" color=#8b0292 v-model="user.username"></v-text-field>
             <v-text-field
             class="password_field"
               color=#8b0292
@@ -32,7 +31,7 @@
               >
             </v-text-field>
 
-            <v-btn class="login_btn" @click="submitlogin">Login</v-btn>
+            <v-btn class="login_btn" @click.prevent="submitlogin">Login</v-btn>
 
             <v-btn class="cancel_btn" @click="reset">Cancelar</v-btn>
           
@@ -41,23 +40,27 @@
 
     </v-container>
     <v-snackbar 
-    color="orange" 
+    color="loginColor" 
     v-model="errorLogin" 
-    
     timeout="2000"> Usuário ou senha inválidos
+    {{loginText}}
+    <template v-slot:action="{attrs}">
+      <v-btn color="black" text v-bind="attrs" @click="loginMessage=false">
+      Fechar      </v-btn>
+    </template>
     </v-snackbar>
-    <v-dialog v-model="novaConta" persistent max-width="300">
+    <!-- <v-dialog v-model="novaConta" persistent max-width="300">
       <v-card>
         <v-card-title>Conta não encontrada</v-card-title>
         <v-card-text>A conta não foi localizada. Deseja criar uma nova 
           conta com os dados informados?</v-card-text>
-        <!-- <v-card-actions>
+        <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="green darken-1" text @click="criarNovaConta">Sim</v-btn>
           <v-btn color="red darken-1" text @click="novaConta = false">Não</v-btn>
-        </v-card-actions> -->
+        </v-card-actions>
       </v-card>
-    </v-dialog>
+    </v-dialog> -->
   </v-container>
 </template>
 
@@ -69,25 +72,36 @@ import { mapActions} from 'vuex'
 export default {
   data(){
     return{
+      auth: false,
       user: {},
       show: false,
       errorLogin: false,
-      novaConta: false,
+      // novaConta: false,
       email: {},
+      loginText: '',
+      loginColor: 'success'
     };
   },
   methods: { 
 
     ...mapActions('auth',['login']),
+    async submitlogin() {
+      try {
+        await this.login(this.user)
+        this.errorLogin = true
+        this.loginMessage="Login realizado com sucesso"
+        this.loginColor="success"
+        this.$router.push({name:'Home'})
+      } catch(e) {
+        this.errorLogin = true
+        this.loginMessage="Erro ao realizar login"
+        this.loginColor="error"        
+      }
+    },
 
-    submitlogin() {
-      this.login(this.usuario)
-      this.$router.push({name:'Home'})
-    }
-
-    // reset() {
-    //   this.user = {};
-    // },
+    reset() {
+      this.user = {};
+    },
     // async login() {
     //   try {
     //     await fb.auth.signInWithEmailAndPassword(this.user.email, this.user.password)

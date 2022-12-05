@@ -3,26 +3,25 @@
     <v-container class="pa-8" fluid>
 
     <h1 class="title">Raças</h1>
-
     <carrossel @next="next" @prev="prev">
 
         <v-list>
-          <carrosselslide class="raca-container" v-for="(raca, index) of racas"
-          v-bind:key="raca.id"
+          <carrosselslide class="raca-container" v-for="(race, index) of racas"
+          v-bind:key="race.id"
           :index="index"
           :visibleSlide="visibleSlide"
-          :direction="direction"> 
-
-            
-            <v-list-item-content><h3 id="raca-title">{{raca.title}}
-              </h3>Força: {{raca.Força}}, Destreza: {{raca.Destreza}}, 
-               Constituição: {{raca.Constituição}}, Inteligencia; {{raca.Inteligencia}}, 
-               Sabedoria: {{raca.Sabedoria}}, Carisma: {{raca.Carisma}} <br>
-            Tamanho: {{raca.tamanho}} <br>
-            Deslocamento: {{raca.Deslocamento}} <br>
-            Idioma: {{raca.idioma}} <br>
-            Caracteristicas: {{raca.Caracteristicas}} 
-            <br>
+          :direction="direction">             
+            <v-list-item-content><h3 id="raca-title">{{race.name}}</h3>
+            Caracteristicas: {{race.features}} <br>
+            Tamanho: {{race.size}} <br>
+            Deslocamento:{{race.speed}}<br>
+            Línguas: {{race.languages}}<br>
+            Força:{{race.strength}} <br>
+            Destreza: {{race.dexterity}}<br>
+            Constituição: {{race.constitution}}<br>
+            Inteligencia: {{race.intelligence}}<br>
+            Sabedoria: {{race.wisdom}}<br>
+            Carisma: {{race.charism}}<br>
             </v-list-item-content>
 
           </carrosselslide>
@@ -33,15 +32,15 @@
 </template>
 
 <script>
-
+import FastRPGApi from '@/api/fastapi'
 import carrossel from "./Carrossel.vue"
 import carrosselslide from "./CarrosselSlide.vue"
 
-import { racas } from '@/assets/db/db'
+const racesApi = new FastRPGApi();
 export default {
   data(){
     return {
-      racas: null, 
+      racas: [], 
       visibleSlide: 0,
       direction: '',
       } 
@@ -54,8 +53,8 @@ computed: {
 },
 
   methods: {
-    async getFichas(){
-      this.racas = racas;
+    async getRaces() {
+      this.racas = await racesApi.getAllRaces()
     },
     next() {
       if(this.visibleSlide >= this.racesLen - 1) {
@@ -77,8 +76,8 @@ computed: {
       this.direction = "right"
     },
 },
-  mounted(){
-    this.getFichas();
+async mounted() {
+    await this.getRaces();
   },
     components: {
       carrossel,

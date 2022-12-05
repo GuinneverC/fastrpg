@@ -14,16 +14,17 @@
       :direction="direction">
 
         <v-list-item-content><h3 id="classe-title">
-          {{ classe.title }}</h3>
-          Força: {{ classe.Força }}, <br>
-          Destreza: {{ classe.Destreza }},<br>
-          Constituição: {{ classe.Constituição }}, <br>
-          Inteligencia;{{ classe.Inteligencia }},<br> 
-          Sabedoria: {{ classe.Sabedoria }}, <br>
-          Carisma:{{ classe.Carisma }} <br />
-          Vida por Nível: {{ classe.vida }}, <br />
-          Habilidade Principal: {{ classe.habilidade }} <br />
-          Descrição: {{ classe.descricao }} <br />
+          {{ classe.name }}</h3>
+          Descrição: {{classe.description}} <br>
+          Vida: {{classe.life}}<br>
+          Habilidade: {{classe.main_skill}} <br>
+          Força:{{classe.strength}} <br>
+          Destreza: {{classe.dexterity}}<br>
+          Constituição: {{classe.constitution}}<br>
+          Inteligencia: {{classe.intelligence}}<br>
+          Sabedoria: {{classe.wisdom}}<br>
+          Carisma: {{classe.charism}}<br>
+          Itens: {{classe.itens.name}}
         </v-list-item-content>
       </carrosselslide>
     </v-list>
@@ -33,11 +34,11 @@
 </template>
 
 <script>
-
+import FastRPGApi from '@/api/fastapi'
 import carrossel from "./Carrossel.vue"
 import carrosselslide from "./CarrosselSlide.vue"
 
-import { classes } from "@/assets/db/db";
+const classApi = new FastRPGApi();
 export default {
   data() {
     return {
@@ -54,8 +55,8 @@ export default {
   },
 
   methods: {
-    async getFichas() {
-      this.classes = classes;
+    async getClasses() {
+      this.classes = await classApi.getAllClasses()
     },
     next() {
       if(this.visibleSlide >= this.classLen- 1) {
@@ -77,8 +78,8 @@ export default {
       this.direction = "right"
     },
   },
-  mounted() {
-    this.getFichas();
+  async mounted() {
+    await this.getClasses();
   },
     components: {
       carrossel,

@@ -47,7 +47,7 @@
           </v-list>
           <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
-        <v-list-item @click="logout"><p><v-icon>mdi-exit-to-app</v-icon>Sair</p></v-list-item>
+        <v-list-item @click="submitLogout"><p><v-icon>mdi-exit-to-app</v-icon>Sair</p></v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-main><router-view> </router-view></v-main>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-import * as fb from '@/plugins/firebase'
+// import * as fb from '@/plugins/firebase'
 import { mapActions } from 'vuex'
 export default {
   data() {
@@ -90,14 +90,11 @@ export default {
 
     ...mapActions('auth', ['logout']),
 
-    async logout(){
-      try{
-        await fb.auth.signOut()
+    submitLogout(){
+        this.logout()
         this.$router.push({path:"/login"})
-      }catch(error){
-        console.log(error)
-      }
-    }
+      
+    },
 
   //   async buscarPerfilDoServidor() {
   //     this.uid = fb.auth.currentUser.uid;
@@ -109,13 +106,13 @@ export default {
   //       this.sobrenome = doc.data().sobrenome
   //     }
   //   },
-  //   logadoOuNao(){
-  //     if(this.uid){
-  //       this.$router.push({path: "/perfil"})
-  //     }else{
-  //       this.$router.push({path: "/login"})
-  //     }
-  //   },
+    logadoOuNao(){
+      if(this.uid){
+        this.$router.push({path: "/perfil"})
+      }else{
+        this.$router.push({path: "/login"})
+      }
+    },
   // }, 
   // mounted() {
   //   this.buscarPerfilDoServidor();
