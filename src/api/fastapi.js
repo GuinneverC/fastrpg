@@ -9,4 +9,8 @@ export default class FastRPGApi {
         const { data } = await axios.get('/api/race')
         return data
     }
+    async addCharacter(character) {
+        const { data } = await axios.post('/api/characters', character)
+        return data     
+    }
 }

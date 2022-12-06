@@ -23,7 +23,7 @@
             class="password_field"
               color=#8b0292
               label="Senha"
-              @keyup.enter="login"
+              @keyup.enter="submitlogin"
               v-model="user.password"
               :type="show ? 'text' : 'password'"
               :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"

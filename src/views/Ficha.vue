@@ -6,17 +6,17 @@
       <form id="fichaform">
 
         <div class="input_name" id="gerador_nomes">
-        <input type="text" id="nome" name="nome" v-model="nome" placeholder="Nome do Personagem">
+        <input type="text" id="nome" name="nome" v-model="character.name" placeholder="Nome do Personagem">
         <v-icon id="icon_dice" class="btn" slot="append" @click="gerar()">mdi-dice-multiple</v-icon>
         </div>
 
 
         <div class="input-container">
           <label class="class_selector" for="classe">Classe: 
-            <select name="classe" class="class_selector" v-model="classe">
+            <select name="classe" class="class_selector" v-model="character.classe">
               <option value="" disabled>Selecione sua Classe</option>
               <option v-for="classe in classes" 
-              :key="classe.id" :value="classe.id">{{ classe.title }}
+              :key="classe.id" :value="classe.id">{{ classe.name }}
               </option>
           </select>
           </label>
@@ -26,10 +26,10 @@
 
         <div class="input-container">
           <label class="breed_selector" for="raca">Raça: 
-            <select name="raca" class="breed_selector" v-model="raca">
+            <select name="raca" class="breed_selector" v-model="character.raca">
               <option value="" disabled>Selecione sua Raça</option>
               <option v-for="raca in racas" 
-              :key="raca.id" :value="raca">{{ raca.title }}
+              :key="raca.id" :value="raca">{{ raca.name }}
               </option>
           </select>
           </label>
@@ -60,10 +60,13 @@
 </template>
 
 <script>
+import FastRPGApi from '@/api/fastapi'
 import gerarnome from '@/utils/gerarnome.js'
 import gerarsobrenome from '@/utils/gerarsobrenome.js'
-import * as fb from "@/plugins/firebase"
-import { niveis, classes, racas } from '@/assets/db/db'
+// import * as fb from "@/plugins/firebase"
+// import { niveis, classes, racas } from '@/assets/db/db'
+
+const classApi = new FastRPGApi();
 export default {
   name: "fichaform",
   data(){
@@ -79,54 +82,68 @@ export default {
       msg: null,
       uid: '',
       ficha: [],
+      character: {}
     }
   },
   methods: {
-    getFichas(){
-      this.classes = classes;
-      this.racas = racas;
-      this.niveis = niveis;
-    }, 
-    async adicionar() {
-      await fb.fichaCollection.add({
-        nome: this.nome,
-        dataGravacao: new Date().toISOString().slice(0, 10),
-        owner: this.uid,
-        classe: this.classe.title,
-        raca: this.raca.title,
-        nivel: this.nivel.title,
-        forca: this.classe.Força + this.raca.Força,
-        destreza: this.classe.Destreza + this.raca.Destreza,
-        constituicao: this.classe.Constituição + this.raca.Constituição,
-        inteligencia: this.classe.Inteligencia + this.raca.Inteligencia,
-        vidamax: this.classe.vida * this.nivel.vida,
-        sabedoria: this.classe.Sabedoria + this.raca.Sabedoria,
-        carisma: this.classe.Carisma + this.raca.Carisma,
-        tamanho: this.raca.tamanho,
-        deslocamento: this.raca.Deslocamento,
-        idioma: this.raca.idioma,
-        caracteristicas: this.raca.Caracteristicas,
-        habilidade: this.classe.habilidade,
-        descricao: this.classe.descricao,
-        
-      });
-      this.msg = `Ficha de ${this.nome} Criada com Sucesso, Confira o Arquivo`;
-
-      setTimeout(() => this.msg = "", 3000);
-      this.nome = "";
-      this.classe = "";
-      this.raca = "";
-      this.nivel = "";
+    async getClasses() {
+      this.classes = await classApi.getAllClasses()
     },
+    async getRaces() {
+      this.racas = await classApi.getAllRaces()
+    },
+    async adicionar() {
+      await classApi.adicionar(character)
+    },
+    // getFichas(){
+    //   this.classes = classes;
+    //   this.racas = racas;
+    //   this.niveis = niveis;
+    // }, 
+    // async adicionar() {
+    //   await fb.fichaCollection.add({
+    //     nome: this.nome,
+    //     dataGravacao: new Date().toISOString().slice(0, 10),
+    //     owner: this.uid,
+    //     classe: this.classe.title,
+    //     raca: this.raca.title,
+    //     nivel: this.nivel.title,
+    //     forca: this.classe.Força + this.raca.Força,
+    //     destreza: this.classe.Destreza + this.raca.Destreza,
+    //     constituicao: this.classe.Constituição + this.raca.Constituição,
+    //     inteligencia: this.classe.Inteligencia + this.raca.Inteligencia,
+    //     vidamax: this.classe.vida * this.nivel.vida,
+    //     sabedoria: this.classe.Sabedoria + this.raca.Sabedoria,
+    //     carisma: this.classe.Carisma + this.raca.Carisma,
+    //     tamanho: this.raca.tamanho,
+    //     deslocamento: this.raca.Deslocamento,
+    //     idioma: this.raca.idioma,
+    //     caracteristicas: this.raca.Caracteristicas,
+    //     habilidade: this.classe.habilidade,
+    //     descricao: this.classe.descricao,
+        
+    //   });
+    //   this.msg = `Ficha de ${this.nome} Criada com Sucesso, Confira o Arquivo`;
+
+    //   setTimeout(() => this.msg = "", 3000);
+    //   this.nome = "";
+    //   this.classe = "";
+    //   this.raca = "";
+    //   this.nivel = "";
+    // },
     gerar(){
       this.nome = gerarnome()+gerarsobrenome()
     },
 
   },
-  mounted(){
-    this.getFichas(),
-    this.uid = fb.auth.currentUser.uid;
+  async mounted() {
+    await this.getClasses();
+    await this.getRaces();
   },
+  // mounted(){
+  //   this.getFichas(),
+  //   this.uid = fb.auth.currentUser.uid;
+  // },
   components: {
   }
 }
