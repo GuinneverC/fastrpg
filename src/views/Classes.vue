@@ -15,7 +15,7 @@
                 Força:{{ classe.strength }} <br />
                 Destreza: {{ classe.dexterity }}<br />
                 Constituição: {{ classe.constitution }}<br />
-                Inteligencia: {{ classe.intelligence }}<br />
+                Inteligência: {{ classe.intelligence }}<br />
                 Sabedoria: {{ classe.wisdom }}<br />
                 Carisma: {{ classe.charism }}<br />
               </v-list-item-content>
