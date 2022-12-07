@@ -13,7 +13,7 @@
 
         <div class="input-container">
           <label class="class_selector" for="classe">Classe: 
-            <select name="classe" class="class_selector" v-model="character.classe">
+            <select name="classe" class="class_selector" v-model="classe">
               <option value="" disabled>Selecione sua Classe</option>
               <option v-for="classe in classes" 
               :key="classe.id" :value="classe.id">{{ classe.name }}
@@ -26,7 +26,7 @@
 
         <div class="input-container">
           <label class="breed_selector" for="raca">Raça: 
-            <select name="raca" class="breed_selector" v-model="character.raca">
+            <select name="raca" class="breed_selector" v-model="raca">
               <option value="" disabled>Selecione sua Raça</option>
               <option v-for="raca in racas" 
               :key="raca.id" :value="raca">{{ raca.name }}
@@ -51,7 +51,7 @@
 
 
         <div class="input-container">
-          <v-btn class="create" @click="adicionar">Criar</v-btn>
+          <v-btn class="create" >Criar</v-btn>
         </div>
         
       </form>
@@ -73,7 +73,7 @@ export default {
 
     return {
       classes: '',
-      racas: null,
+      racas: '',
       niveis: null,
       nome: '',
       classe: '',
@@ -82,7 +82,7 @@ export default {
       msg: null,
       uid: '',
       ficha: [],
-      character: {}
+      character: {},
     }
   },
   methods: {
@@ -92,9 +92,9 @@ export default {
     async getRaces() {
       this.racas = await classApi.getAllRaces()
     },
-    async adicionar() {
-      await classApi.adicionar(character)
-    },
+    // async addCharacter() {
+    //   await classApi.addCharacter(character)
+    // },
     // getFichas(){
     //   this.classes = classes;
     //   this.racas = racas;

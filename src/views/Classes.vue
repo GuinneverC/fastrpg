@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-carousel v-model="model">
+    <v-carousel>
       <v-carousel-item v-for="classe in classes" :key="classe.id">
         <v-sheet color="yellow" height="100%" tile>
           <v-row class="fill-height" align="center" justify="center">
@@ -18,7 +18,6 @@
                 Inteligencia: {{ classe.intelligence }}<br />
                 Sabedoria: {{ classe.wisdom }}<br />
                 Carisma: {{ classe.charism }}<br />
-                Itens: {{ classe.itens.name }}
               </v-list-item-content>
             </div>
           </v-row>
@@ -27,13 +26,13 @@
     </v-carousel>
 
 
-    <v-col v-for="item in items" :key="item.id" cols="2">
+    <!-- <v-col v-for="item in itens" :key="item.id" cols="2">
           <v-card class="card">
             <div>
               <v-card-title v-text="item.name"></v-card-title>
             </div>
           </v-card>
-        </v-col>
+        </v-col> -->
 
 
   </v-container>
@@ -49,14 +48,14 @@ const itemService = new ItemService();
 export default {
   async created() {
     this.classes = await classeService.buscarClasses();
-    this.items = await itemService.buscarItem(Number(this.$route.params.id));
+    this.itens = await itemService.buscarItem(Number(this.$route.params.id));
   
   },
   data() {
     return {
       classes: [],
       classe: {},
-      items:[],
+      itens:[],
       dialog: false,
     };
   },
